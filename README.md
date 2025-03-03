@@ -13,7 +13,7 @@ This repository contains a web application for flight planning and seat recommen
 
 # Usage
 
-Run the main java program (seatSelectorApplication.java) by pressing the run button or using a shortcut key.
+Run the main java program (SeatSelectorApplication.java) by pressing the run button or using a shortcut key.
 
 Open http://localhost:8000
 
@@ -28,5 +28,7 @@ Open http://localhost:8000
 # Protsess (ET) / Process
 Algul uuendasin nõutud tööriistu nagu Git ja Java, tutuvusin Spring Booti dokumentatsiooniga ja tegin katsetuseks ühe hello world projekti. (umbes 1.5h) Hakkasin juba mõtlema kuidas suures pildis võiks programm töötada. Kuna tegu on väikse projektiga siis valisin front endi jaoks välja vana hea HTML, CSS, JS kombo. 
 
+Siis asusin töö kallale. Programm on esialgu jaotatud suuresti kolmeks paketiks: controller, model ja service. Lõin service paketis hardcoded andmete jaoks FlightService ja SeatService'i klassid, kus olid ka mõned meeetodid nende andmete käsitlemiseks. Lisaks veel model paketis lendude, istmete ja nende omaduste käsitlemiseks eraldi klassid Flight ja Seat. Controller paketis 
 
+SeatSelectorApplication on programmi peamine klass mis paneb kõik tööle.
 
