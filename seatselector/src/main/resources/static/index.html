@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Planner & Seat Selector</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <h1>Flight Planner & Seat Selector</h1>
+</header>
+
+<div class="container">
+    <section id="flight-search">
+        <h2>Find Your Flight</h2>
+        <form id="flight-filter-form">
+            <div class="form-group">
+                <label for="destination">Destination:</label>
+                <input type="text" id="destination" name="destination" placeholder="Enter destination">
+            </div>
+
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date">
+            </div>
+
+            <div class="form-group time-range">
+                <label>Flight Time:</label>
+                <div class="time-inputs">
+                    <input type="time" id="earliest-time" name="earliestTime">
+                    <span>to</span>
+                    <input type="time" id="latest-time" name="latestTime">
+                </div>
+            </div>
+
+            <div class="form-group price-range">
+                <label>Price Range (€):</label>
+                <div class="price-inputs">
+                    <input type="number" id="min-price" name="minPrice" placeholder="Min">
+                    <span>to</span>
+                    <input type="number" id="max-price" name="maxPrice" placeholder="Max">
+                </div>
+            </div>
+
+            <button type="submit" class="btn primary">Search Flights</button>
+        </form>
+    </section>
+
+    <section id="flight-results-section">
+        <h2>Available Flights</h2>
+        <div id="flight-results" class="flight-grid"></div>
+    </section>
+
+    <section id="seat-selection" class="hidden">
+        <h2>Select Your Seat</h2>
+
+        <div class="preferences-panel">
+            <h3>Seat Preferences</h3>
+            <form id="seat-preferences-form">
+                <div class="form-group">
+                    <label for="num-seats">Number of Seats:</label>
+                    <input type="number" id="num-seats" name="numSeats" min="1" max="9" value="1">
+                </div>
+
+                <div class="preferences-options">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="prefer-window" name="preferWindow">
+                        <span class="checkmark"></span>
+                        Window Seat
+                    </label>
+
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="need-extra-legroom" name="needExtraLegroom">
+                        <span class="checkmark"></span>
+                        Extra Legroom
+                    </label>
+
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="near-exit" name="nearExit">
+                        <span class="checkmark"></span>
+                        Near Exit
+                    </label>
+
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="seats-together" name="seatsTogetherRequired">
+                        <span class="checkmark"></span>
+                        Seats Together
+                    </label>
+                </div>
+
+                <button type="submit" class="btn primary">Find Best Seats</button>
+            </form>
+        </div>
+
+        <div class="seat-map-container">
+            <div class="seat-map-legend">
+                <div class="legend-item">
+                    <div class="seat-icon available"></div>
+                    <span>Available</span>
+                </div>
+                <div class="legend-item">
+                    <div class="seat-icon occupied"></div>
+                    <span>Occupied</span>
+                </div>
+                <div class="legend-item">
+                    <div class="seat-icon recommended"></div>
+                    <span>Recommended</span>
+                </div>
+                <div class="legend-item">
+                    <div class="seat-icon selected"></div>
+                    <span>Selected</span>
+                </div>
+            </div>
+
+            <div id="seat-map"></div>
+        </div>
+
+        <div class="selected-seats-summary hidden">
+            <h3>Selected Seats</h3>
+            <div id="selected-seats-list"></div>
+            <button id="confirm-booking" class="btn primary">Confirm Booking</button>
+        </div>
+    </section>
+
+    <div id="booking-confirmation" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Booking Confirmed!</h2>
+            <p>Your flight and seat selection have been confirmed.</p>
+            <div id="booking-details"></div>
+            <button id="new-search" class="btn primary">Book Another Flight</button>
+        </div>
+    </div>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>
