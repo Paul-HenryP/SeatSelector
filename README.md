@@ -41,5 +41,8 @@ SeatController käsitleb istmetega seotud päringuid ja pakub järgmisi API lõp
 
 SeatSelectorApplication on programmi peamine klass, mis käivitab Spring Boot rakenduse. (u. 5h)
 
+## Eeldused:
+- Eeldasin, et on okei kui lahendus on ingliskeelne.
+
 
 
