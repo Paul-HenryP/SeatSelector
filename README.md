@@ -6,7 +6,7 @@ This repository contains a web application for flight planning and seat recommen
 ## Zip file
 
 1. Download the zip from this repository and extract it.
-2. In Intellij, click: new->From existing source, drag and drop the unzipped file or insert the path.
+2. In Intellij click: new->From existing source, drag and drop the unzipped file or insert the path.
 
 ## Using Git
 
