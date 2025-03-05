@@ -6,7 +6,7 @@ This repository contains a web application for flight planning and seat recommen
 ## Zip file
 
 1. Download the zip from this repository and extract it.
-2. In Intellij, click: new->From existing source, drag and drop the unzipped file or insert the path.
+2. In Intellij click: new->From existing source, drag and drop the unzipped file or insert the path.
 
 ## Using Git
 
@@ -15,7 +15,7 @@ This repository contains a web application for flight planning and seat recommen
 
 Run the main java program (SeatSelectorApplication.java) by pressing the run button or using a shortcut key.
 
-Open http://localhost:8000
+Open [localhost:8080](http://localhost:8080)
 
 # Technologies Used
 
@@ -33,13 +33,16 @@ Siis asusin töö kallale. Programm on esialgu jaotatud suuresti kolmeks paketik
 /api/flights - kõikide lendude saamiseks (GET meetod).
 /api/flights/filter - lendude filtreerimiseks erinevate parameetrite põhjal (sihtkoht, kuupäev, väljalennu aeg, hind).
 /api/flights/{id} - konkreetse lennu detailide saamiseks ID järgi.
-
 SeatController käsitleb istmetega seotud päringuid ja pakub järgmisi API lõpp-punkte:
-
 /api/seats/{flightId} - konkreetse lennu istmeplaani kuvamiseks.
 /api/seats/{flightId}/recommend - istmete soovituste genereerimiseks kasutaja eelistuste põhjal.
 
 SeatSelectorApplication on programmi peamine klass, mis käivitab Spring Boot rakenduse. (u. 5h)
+
+Tegin esialgu katsetuseks mõned testid, uurisin JUnit testide loomise kohta youtube'ist.
+
+## Eeldused:
+- Eeldasin, et on okei kui lahendus on ingliskeelne.
 
 
 
