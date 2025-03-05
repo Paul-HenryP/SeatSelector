@@ -1,5 +1,9 @@
 package com.example.seatselector.model;
 
+import com.example.seatselector.util.LocalDateSerializer;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -9,12 +13,14 @@ import java.time.LocalTime;
  */
 public class Flight {
 
-    private String time;
     private Long id;
     private String origin;
     private String destination;
+    @JsonSerialize(using = LocalDateSerializer.class) //To manage the US date into the EU format.
     private LocalDate date;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
     private LocalTime departureTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
     private LocalTime arrivalTime;
     private double price;
     private String flightNumber;

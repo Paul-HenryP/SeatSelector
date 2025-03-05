@@ -28,9 +28,9 @@ public class FlightController {
     @GetMapping("/filter")
     public List<Flight> filterFlights(
             @RequestParam(required = false) String destination,
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime earliestTime,
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime latestTime,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "HH:mm") LocalTime earliestTime,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "HH:mm") LocalTime latestTime,
             @RequestParam(required = false) Double minPrice,
             @RequestParam(required = false) Double maxPrice) {
 

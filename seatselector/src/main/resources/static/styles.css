@@ -57,13 +57,17 @@ label {
 
 input[type="text"],
 input[type="date"],
-input[type="time"],
 input[type="number"] {
     width: 100%;
     padding: 0.8rem;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 1rem;
+}
+
+input[type="time"] {
+    font-family: monospace;
+    text-align: center;
 }
 
 .time-range, .price-range {

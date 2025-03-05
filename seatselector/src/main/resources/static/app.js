@@ -20,6 +20,77 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const timeInputs = document.querySelectorAll('input[type="text"][placeholder="HH:mm"]');
+
+    timeInputs.forEach(input => {
+        // Auto-correct and validate when the user leaves the input field.
+        input.addEventListener("blur", () => {
+            let value = input.value;
+
+            // Auto-add a colon if missing.
+            if (value.length === 2 && !value.includes(":")) {
+                value = value + ":00"; // Add colon and default minutes to "00".
+            }
+
+            // Auto-correct minutes if only one digit is entered.
+            if (value.length === 4 && value.includes(":")) {
+                let [hours, minutes] = value.split(":");
+                if (minutes.length === 1) {
+                    minutes = minutes.padEnd(2, "0"); // Auto-correct to two digits ("1" → "10").
+                    value = `${hours}:${minutes}`;
+                }
+            }
+
+            if (value.includes(":")) {
+                let [hours, minutes] = value.split(":");
+                hours = hours.padStart(2, "0"); // Two digits.
+                minutes = minutes.padEnd(2, "0"); // Two digits.
+                value = `${hours}:${minutes}`;
+            }
+
+            input.value = value;
+
+            // Validates the time format.
+            const timeRegex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
+            if (!timeRegex.test(value)) {
+                input.setCustomValidity("Please enter a valid time in 24-hour format (HH:mm).");
+            } else {
+                input.setCustomValidity("");
+            }
+        });
+
+        // Prevent invalid input (AM/PM) while typing
+        input.addEventListener("input", () => {
+            let value = input.value;
+
+            // Allow only digits and colons
+            value = value.replace(/[^0-9:]/g, "");
+
+            // Ensure the input follows the HH:mm format
+            if (value.length > 2 && !value.includes(":")) {
+                value = value.slice(0, 2) + ":" + value.slice(2); // Auto-add colon after two digits
+            }
+
+            input.value = value;
+        });
+    });
+
+    document.getElementById("flight-filter-form").addEventListener("submit", function (event) {
+        // Trigger blur event on all time inputs to ensure auto-correction is applied.
+        timeInputs.forEach(input => input.dispatchEvent(new Event("blur")));
+
+        // Check if any input is invalid.
+        const invalidInputs = Array.from(timeInputs).filter(input => !input.checkValidity());
+        if (invalidInputs.length > 0) {
+            event.preventDefault(); // Prevent form submission.
+            invalidInputs[0].reportValidity(); // Show validation message for the first invalid input.
+        }
+    });
+});
+
 // API Functions.
 async function fetchFlights() {
     try {
@@ -118,7 +189,7 @@ function displayFlights(flights) {
         </div>
     `).join('');
 
-    // Adds event listeners to flight selection buttons.
+    // Event listeners for the flight selection buttons.
     document.querySelectorAll('.select-flight-btn').forEach(button => {
         button.addEventListener('click', handleFlightSelection);
     });
@@ -272,9 +343,9 @@ function handleFlightSearch(event) {
     const formData = new FormData(event.target);
     const filters = {
         destination: formData.get('destination'),
-        date: formData.get('date'),
-        earliestTime: formData.get('earliestTime'),
-        latestTime: formData.get('latestTime'),
+        date: formatInputDate(formData.get("date")),
+        earliestTime: formatInputTime(formData.get("earliestTime")),
+        latestTime: formatInputTime(formData.get("latestTime")),
         minPrice: formData.get('minPrice'),
         maxPrice: formData.get('maxPrice')
     };
@@ -285,6 +356,24 @@ function handleFlightSearch(event) {
     });
 
     fetchFilteredFlights(filters);
+}
+
+function formatInputDate(dateString) {
+    if (!dateString) return "";
+
+    // Checks if the format is already yyyy-MM-dd (from <input type="date">).
+    if (dateString.includes("-")) return dateString;
+
+    // dd.MM.yyyy → yyyy-MM-dd.
+    const [day, month, year] = dateString.split(".");
+    return `${year}-${month}-${day}`;
+}
+
+
+function formatInputTime(timeString) {
+    if (!timeString) return "";
+    let [hours, minutes] = timeString.split(":");
+    return `${hours.padStart(2, "0")}:${minutes.padStart(2, "0")}`;
 }
 
 function handleFlightSelection(event) {
@@ -383,20 +472,18 @@ function resetApplication() {
 
 // Utility Functions.
 function formatDate(dateString) {
-    if (!dateString) return '';
-
-    const date = new Date(dateString);
-    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-    return date.toLocaleDateString('en-GB', options);
+    if (!dateString) return "";
+    return dateString;
 }
 
 function formatTime(timeString) {
-    if (!timeString) return '';
-
-    // Handles the ISO time format: HH:mm:ss
-    const timeParts = timeString.split(':');
-    return `${timeParts[0]}:${timeParts[1]}`;
+    if (!timeString) return "";
+    let [hours, minutes] = timeString.split(":");
+    return `${hours.padStart(2, "0")}:${minutes.padStart(2, "0")}`;
 }
+
+
+
 
 function showError(message) {
     alert(message);

@@ -10,4 +10,9 @@ class SeatSelectorApplicationTests {
 	void contextLoads() {
 	}
 
+	@Test
+	void mainMethodShouldRunWithoutExceptions() {
+		SeatSelectorApplication.main(new String[]{});
+	}
+
 }
