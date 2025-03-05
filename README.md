@@ -15,7 +15,7 @@ This repository contains a web application for flight planning and seat recommen
 
 Run the main java program (SeatSelectorApplication.java) by pressing the run button or using a shortcut key.
 
-Open http://localhost:8000
+Open [localhost:8000](http://localhost:8080)
 
 # Technologies Used
 
