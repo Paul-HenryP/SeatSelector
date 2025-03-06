@@ -9,7 +9,15 @@ This repository contains a web application for flight planning and seat recommen
 2. In Intellij click: new->From existing source, drag and drop the unzipped file or insert the path.
 
 ## Using Git
-- [Intellij Docs](https://www.jetbrains.com/help/idea/opening-files-from-command-line.html) 
+- [Intellij Docs](https://www.jetbrains.com/help/idea/opening-files-from-command-line.html)
+
+1.  `Git clone `
+
+2.  You can find the executable for running IntelliJ IDEA in the installation directory under bin. To use this executable as the command-line launcher, add it to your system PATH as described in Command-line interface.
+
+4. open the project:
+
+`idea64.exe C:\seatselector`
 
 # Usage
 
