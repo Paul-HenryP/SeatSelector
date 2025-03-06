@@ -9,7 +9,7 @@ This repository contains a web application for flight planning and seat recommen
 2. In Intellij click: new->From existing source, drag and drop the unzipped file or insert the path.
 
 ## Using Git
-
+- [Intellij Docs](https://www.jetbrains.com/help/idea/opening-files-from-command-line.html) 
 
 # Usage
 
