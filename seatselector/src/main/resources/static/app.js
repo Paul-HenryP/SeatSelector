@@ -21,73 +21,67 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-
+// Used AI (DeepSeek) to manage all the edge cases for time input handling and for a better UX.
 document.addEventListener("DOMContentLoaded", function () {
     const timeInputs = document.querySelectorAll('input[type="text"][placeholder="HH:mm"]');
 
     timeInputs.forEach(input => {
         // Auto-correct and validate when the user leaves the input field.
         input.addEventListener("blur", () => {
-            let value = input.value;
+            let value = input.value.trim();
 
-            // Auto-add a colon if missing.
-            if (value.length === 2 && !value.includes(":")) {
-                value = value + ":00"; // Add colon and default minutes to "00".
+            // Remove all non-digit characters (e.g., colons, spaces, etc.)
+            value = value.replace(/\D/g, "");
+
+            // Handle empty input
+            if (value === "") {
+                input.value = "";
+                input.setCustomValidity("Please enter a valid time in 24-hour format (HH:mm).");
+                return;
             }
 
-            // Auto-correct minutes if only one digit is entered.
-            if (value.length === 4 && value.includes(":")) {
-                let [hours, minutes] = value.split(":");
-                if (minutes.length === 1) {
-                    minutes = minutes.padEnd(2, "0"); // Auto-correct to two digits ("1" → "10").
-                    value = `${hours}:${minutes}`;
-                }
+            // Pad the input to at least 2 digits (e.g., "1" → "10")
+            if (value.length === 1) {
+                value = value.padEnd(2, "0");
             }
 
-            if (value.includes(":")) {
-                let [hours, minutes] = value.split(":");
-                hours = hours.padStart(2, "0"); // Two digits.
-                minutes = minutes.padEnd(2, "0"); // Two digits.
-                value = `${hours}:${minutes}`;
-            }
+            // Split into hours and minutes
+            let hours = value.slice(0, 2);
+            let minutes = value.slice(2, 4) || "00"; // Default minutes to "00" if missing
 
-            input.value = value;
+            // Ensure hours are within 0-23
+            hours = Math.min(23, Math.max(0, parseInt(hours, 10))).toString().padStart(2, "0");
 
-            // Validates the time format.
+            // Ensure minutes are within 0-59
+            minutes = Math.min(59, Math.max(0, parseInt(minutes, 10))).toString().padStart(2, "0");
+
+            // Combine into the final time string
+            const correctedTime = `${hours}:${minutes}`;
+            input.value = correctedTime;
+
+            // Validate the time format
             const timeRegex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
-            if (!timeRegex.test(value)) {
+            if (!timeRegex.test(correctedTime)) {
                 input.setCustomValidity("Please enter a valid time in 24-hour format (HH:mm).");
             } else {
                 input.setCustomValidity("");
             }
         });
 
-        // Prevent invalid input (AM/PM) while typing
+        // Prevent invalid input (e.g., letters, symbols) while typing
         input.addEventListener("input", () => {
             let value = input.value;
 
             // Allow only digits and colons
             value = value.replace(/[^0-9:]/g, "");
 
-            // Ensure the input follows the HH:mm format
+            // Auto-add a colon after two digits if missing
             if (value.length > 2 && !value.includes(":")) {
-                value = value.slice(0, 2) + ":" + value.slice(2); // Auto-add colon after two digits
+                value = value.slice(0, 2) + ":" + value.slice(2);
             }
 
             input.value = value;
         });
-    });
-
-    document.getElementById("flight-filter-form").addEventListener("submit", function (event) {
-        // Trigger blur event on all time inputs to ensure auto-correction is applied.
-        timeInputs.forEach(input => input.dispatchEvent(new Event("blur")));
-
-        // Check if any input is invalid.
-        const invalidInputs = Array.from(timeInputs).filter(input => !input.checkValidity());
-        if (invalidInputs.length > 0) {
-            event.preventDefault(); // Prevent form submission.
-            invalidInputs[0].reportValidity(); // Show validation message for the first invalid input.
-        }
     });
 });
 
