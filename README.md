@@ -17,7 +17,7 @@ This repository contains a web application for flight planning and seat recommen
 
 4. open the project:
 
-`idea64.exe C:\seatselector`
+  `idea64.exe C:\seatselector`
 
 # Usage
 
