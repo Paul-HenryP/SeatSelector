@@ -1,5 +1,5 @@
 # SeatSelector
-This repository contains a web application for flight planning and seat recommendation, developed for CGI Summer Internship 2025. Users can search for flights using filters (destination, date, duration, price) and get seat recommendations based on preferences (window seat, extra legroom, proximity to exit). Built with Spring Boot and Java LTS.
+This repository contains a web application for flight planning and seat recommendation, developed for the CGI Summer Internship 2025. Users can search for flights using filters (destination, date, duration, price) and get seat recommendations based on their preferences (window seat, extra legroom, proximity to exit).
 
 # Installation
 
