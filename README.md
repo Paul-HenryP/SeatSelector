@@ -13,7 +13,7 @@ This repository contains a web application for flight planning and seat recommen
 
 1.  `Git clone https://github.com/Paul-HenryP/SeatSelector.git`
 
-2.  You can find the executable for running IntelliJ IDEA in the installation directory under bin. To use this executable as the command-line launcher, add it to your system PATH as described in Command-line interface.
+2.  You can find the executable for running IntelliJ IDEA in the installation directory under bin. To use this executable as the command-line launcher, add it to your system PATH as described in [Command-line interface](https://www.jetbrains.com/help/idea/working-with-the-ide-features-from-command-line.html).
 
 4. open the project:
 
