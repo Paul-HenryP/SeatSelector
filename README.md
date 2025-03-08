@@ -19,11 +19,37 @@ This repository contains a web application for flight planning and seat recommen
 
   `idea64.exe C:\seatselector`
 
+## Installing with Docker
+Clone the repository:
+   ```
+   git clone https://github.com/Paul-HenryP/SeatSelector.git
+   cd seatselector
+   ```
+## Or pull the Pre-Built Docker Image
+
+```
+docker pull paulhenryp/seatselector:latest
+```
+
 # Usage
 
 Run the main java program (SeatSelectorApplication.java) by pressing the run button or using a shortcut key.
 
 Open [localhost:8080](http://localhost:8080)
+
+## Running with Docker
+
+### Build & run the Docker Image
+
+   ```
+   docker build -t seatselector .
+   docker run -p 8080:8080 seatselector
+   ```
+### Run the Pre-Built Docker Image
+
+```
+docker run -p 8080:8080 paulhenryp/seatselector
+```
 
 # Technologies Used
 
