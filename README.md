@@ -80,6 +80,8 @@ Tegin esialgu katsetuseks mõned testid, uurisin JUnit testide loomise kohta you
 
 Siis tegelesin rakenduse kuupäeva ja kellaaja vormindamise probleemide lahendamisega. Peamine probleem oli selles, et frontend kuvas kuupäevi ja kellaaegu vormingus, mis ei vastanud Euroopa standardile. Algselt kasutas JavaScripti kellaaja sisend vaikimisi AM/PM vormingut, mis ei olnud kasutajasõbralik. Kellaaja vormingu probleemi lahendamiseks otsustasin kasutada kellaaja sisendina tavateksti välja `<input type="text">` selle asemel, et kasutada `<input type="time">`, kuna JavaScript ei toeta kõikides brauserites 24-tunnise kellaaja vormingu sundimist. Lisasin loogika, mis parandab kellaaja sisendit automaatselt, kui kasutaja lõpetab aja sisestamise. Töö käigus kasutasin AI abi vigade otsimiseks ja lahenduse täiustamiseks. AI aitas mul tuvastada JavaScripti kellaaja piirangud ja pakkus välja lahendusi, nagu kohandatud tekstiväljade kasutamine ja automaatparanduse loogika. (u. 3h)
 
+Uurisin kuidas täpsemalt Gradle projektile Dockerfile faili luuakse. Katsetasin erinevaid viise, aga lõpuks kasutasin AI abi vigade lahendamiseks, mille abil sain Dockerfile korralikult vormistatud. (u. 1.5h)
+
 ## Eeldused:
 - Eeldasin, et on okei kui lahendus ja kood on ingliskeelne.
 
