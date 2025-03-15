@@ -60,7 +60,7 @@ docker run -p 8080:8080 paulhenryp/seatselector
 - JS
 
 # Protsess (ET) / Process
-Algul uuendasin nõutud tööriistu nagu Git ja Java, tutuvusin Spring Booti dokumentatsiooniga ja tegin katsetuseks ühe hello world projekti. (umbes 1.5h) Hakkasin juba mõtlema kuidas suures pildis võiks programm töötada. Kuna tegu on väikse projektiga siis valisin front endi jaoks välja vana hea HTML, CSS, JS kombo. 
+Algul uuendasin nõutud tööriistu nagu Git ja Java, et tagada nende ajakohasus ja vältida võimalikke versiooniprobleeme. Tutuvusin Spring Booti dokumentatsiooniga ja tegin katsetuseks ühe hello world projekti. (~ 1.5h) Hakkasin juba mõtlema kuidas suures pildis võiks programm töötada. Kuna tegu on väikse projektiga siis valisin front endi jaoks välja vana hea HTML, CSS, JS kombo. 
 
 Siis asusin töö kallale. Programm on esialgu jaotatud suuresti kolmeks paketiks: controller, model ja service. Lõin service paketis hardcoded andmete jaoks FlightService ja SeatService'i klassid, kus olid ka mõned meeetodid nende andmete käsitlemiseks. Hardcoded andmed lasin AI'l genereerida. Lisaks veel model paketis lendude, istmete ja nende omaduste käsitlemiseks eraldi klassid Flight ja Seat. Controller paketis lõin FlightController ja SeatController klassid, mis tegelevad HTTP päringute töötlemisega ja andmete edastamisega front-end liidese ja teenusekihi vahel. 
 
@@ -74,13 +74,13 @@ Siis asusin töö kallale. Programm on esialgu jaotatud suuresti kolmeks paketik
 `/api/seats/{flightId}` - konkreetse lennu istmeplaani kuvamiseks.
 `/api/seats/{flightId}/recommend` - istmete soovituste genereerimiseks kasutaja eelistuste põhjal.
 
-SeatSelectorApplication on programmi peamine klass, mis käivitab Spring Boot rakenduse. (u. 5h)
+SeatSelectorApplication on programmi peamine klass, mis käivitab Spring Boot rakenduse. (~ 5h)
 
 Tegin esialgu katsetuseks mõned testid, uurisin JUnit testide loomise kohta youtube'ist.
 
-Siis tegelesin rakenduse kuupäeva ja kellaaja vormindamise probleemide lahendamisega. Peamine probleem oli selles, et frontend kuvas kuupäevi ja kellaaegu vormingus, mis ei vastanud Euroopa standardile. Algselt kasutas JavaScripti kellaaja sisend vaikimisi AM/PM vormingut, mis ei olnud kasutajasõbralik. Kellaaja vormingu probleemi lahendamiseks otsustasin kasutada kellaaja sisendina tavateksti välja `<input type="text">` selle asemel, et kasutada `<input type="time">`, kuna JavaScript ei toeta kõikides brauserites 24-tunnise kellaaja vormingu sundimist. Lisasin loogika, mis parandab kellaaja sisendit automaatselt, kui kasutaja lõpetab aja sisestamise. Töö käigus kasutasin AI abi vigade otsimiseks ja lahenduse täiustamiseks. AI aitas mul tuvastada JavaScripti kellaaja piirangud ja pakkus välja lahendusi, nagu kohandatud tekstiväljade kasutamine ja automaatparanduse loogika. (u. 3h)
+Siis tegelesin rakenduse kuupäeva ja kellaaja vormindamise probleemide lahendamisega. Peamine probleem oli selles, et frontend kuvas kuupäevi ja kellaaegu vormingus, mis ei vastanud Euroopa standardile ning võis kasutajatele segadust tekitada. Kellaaja vormingu probleemi lahendamiseks otsustasin kasutada kellaaja sisendina tavateksti välja `<input type="text">` selle asemel, et kasutada `<input type="time">`, kuna JavaScript ei toeta kõikides brauserites 24-tunnise kellaaja vormingu sundimist. Lisasin loogika, mis parandab kellaaja sisendit automaatselt, kui kasutaja lõpetab aja sisestamise. AI aitas mul tuvastada ja lahendada keerulisi probleeme, mis võimaldas mul keskenduda rohkem arendustööle ja kvaliteedi tagamisele. Näiteks aitas tehisaru mul tuvastada JavaScripti kellaaja klassi tehnilisi piirangud ja pakkus välja lahendusi. (~ 3h)
 
-Uurisin kuidas täpsemalt Gradle projektile Dockerfile faili luuakse. Katsetasin erinevaid viise, aga lõpuks kasutasin AI abi vigade lahendamiseks, mille abil sain Dockerfile korralikult vormistatud. (u. 1.5h)
+Uurisin kuidas täpsemalt Gradle projektile Dockerfile faili luuakse. Katsetasin erinevaid viise, aga lõpuks kasutasin AI abi vigade lahendamiseks, mille abil sain Dockerfile korralikult vormistatud. (~ 1.5h)
 
 ## Eeldused:
 - Eeldasin, et on okei kui lahendus ja kood on ingliskeelne.
